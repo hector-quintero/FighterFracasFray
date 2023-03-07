@@ -4,7 +4,8 @@ public enum DIRECTION {
     UPLEFT,
     DOWN, 
     DOWNRIGHT, 
-    DOWNLEFT
+    DOWNLEFT,
+    NONE
 }
 
 public class NeighborDirection {

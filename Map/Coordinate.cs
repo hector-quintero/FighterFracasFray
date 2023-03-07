@@ -11,25 +11,44 @@ public class Coordinate {
     }
 
     private NeighborDirection readInternal(int index) {
-        
+
         bool isUp = ahead[index] > 0;
+        bool isDown = ahead[index] < 0;
         bool isStraight = aheadRight[index] == 0;
         bool isRight = aheadRight[index] > 0;
+        bool isLeft = aheadRight[index] < 0;
 
         bool isStraightUp = isUp && isStraight;
         bool isUpRight = isUp && isRight;
-        bool isUpLeft = isUp && !isRight;
+        bool isUpLeft = isUp && isLeft;
 
-        bool isStraightDown = !isUp && !isStraight;
-        bool isDownRight = !isUp && isRight;
-        bool isDownLeft = !isUp && !isRight;
+        bool isStraightDown = isDown && isStraight;
+        bool isDownRight = isDown && isRight;
+        bool isDownLeft = isDown && isLeft;
 
 
         if(isStraightUp) {
             return new NeighborDirection(DIRECTION.UP, ahead[index]);
         }
+        else if(isStraightDown) {
+            return new NeighborDirection(DIRECTION.DOWN, 0-ahead[index]);
+        }
+        else if(isUpRight) {
+            return new NeighborDirection(DIRECTION.UPRIGHT, ahead[index]);
+        }
+        else if(isUpLeft) {
+            return new NeighborDirection(DIRECTION.UPLEFT, ahead[index]);
+        }
+        else if(isDownRight) {
+            return new NeighborDirection(DIRECTION.DOWNRIGHT, ahead[index]);
+        }
+        else if(isDownLeft) {
+            NeighborDirection n = new NeighborDirection(DIRECTION.DOWNLEFT, 0-ahead[index]);
+            
+            return n;
+        }
 
-        return null;
+        return new NeighborDirection(DIRECTION.NONE, ahead[index]);
     }
 
     public NeighborDirection first() {

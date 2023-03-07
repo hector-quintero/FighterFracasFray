@@ -9,7 +9,7 @@ public class Node {
     }
 
     public Node getNeighbor(NeighborDirection neighDirection){
-        if(neighDirection.distance == 0) {
+        if(neighDirection.distance == 0 && neighDirection.direction == DIRECTION.NONE) {
             return this;
         }
 
@@ -62,5 +62,24 @@ public class Node {
                 break;
         }
         setInternalNeighbor(direction.getOpposite(), this, depth - 1);
+    }
+
+    public void setNeighborUp(Node neighbor) {
+        setInternalNeighbor(DIRECTION.UP, neighbor);
+    }
+    public void setNeighborUpRight(Node neighbor) {
+        setInternalNeighbor(DIRECTION.UPRIGHT, neighbor);
+    }
+    public void setNeighborUpLeft(Node neighbor) {
+        setInternalNeighbor(DIRECTION.UPLEFT, neighbor);
+    }
+    public void setNeighborDown(Node neighbor) {
+        setInternalNeighbor(DIRECTION.DOWN, neighbor);
+    }
+    public void setNeighborDownLeft(Node neighbor) {
+        setInternalNeighbor(DIRECTION.DOWNLEFT, neighbor);
+    }
+    public void setNeighborDownRight(Node neighbor) {
+        setInternalNeighbor(DIRECTION.DOWNRIGHT, neighbor);
     }
 }

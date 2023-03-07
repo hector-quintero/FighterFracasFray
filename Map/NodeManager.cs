@@ -4,12 +4,16 @@ public class NodeManager {
 
         Node root = new Node($"data {size}");
 
-        Node up = new Node($"data {2}");
-        Node upup = new Node($"data {3}");
+        DIRECTION[] directions = (DIRECTION[])(Enum.GetValues(typeof(DIRECTION)));
+        for(int i = 0; i < directions.Length; ++i)
+        {
+            if(directions[i] == DIRECTION.NONE) continue;
 
-        root.setInternalNeighbor(DIRECTION.UP, up);
-        up.setInternalNeighbor(DIRECTION.UP, upup);
-        
+            Node n = new Node($"data {i}");
+            root.setInternalNeighbor(directions[i], n);
+            n.setInternalNeighbor(directions[i].getOpposite(), root);
+        }
+
         return root;
     }
 }
