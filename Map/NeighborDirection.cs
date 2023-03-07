@@ -1,10 +1,10 @@
 public enum DIRECTION {
     UP, 
     UPRIGHT,
-    UPLEFT,
+    DOWNRIGHT,
     DOWN, 
-    DOWNRIGHT, 
-    DOWNLEFT,
+    DOWNLEFT, 
+    UPLEFT,
     NONE
 }
 
